@@ -72,7 +72,7 @@ function generateMatrix(len, gr, grEat, predator, persona, rock, blackhole) {
     }
     return matrix;
 }
-generateMatrix(30, 45, 25, 15, 20, 6, 6, )
+generateMatrix(30, 45, 25, 15, 20, 6, 6)
 
 io.sockets.emit('send matrix', matrix);
 
@@ -186,23 +186,23 @@ function PersonaB() {
     }
 }
 
-function RockB() {
-    let x = Math.floor(Math.random() * 25)
-    let y = Math.floor(Math.random() * 25)
-    if (matrix[y][x] == 0) {
-        matrix[y][x] = 5
-        rockArr.push(new Rock(x, y));
-    }
-}
+// function RockB() {
+//     let x = Math.floor(Math.random() * 25)
+//     let y = Math.floor(Math.random() * 25)
+//     if (matrix[y][x] == 0) {
+//         matrix[y][x] = 5
+//         rockArr.push(new Rock(x, y));
+//     }
+// }
 
-function BlackholeB() {
-    let x = Math.floor(Math.random() * 25)
-    let y = Math.floor(Math.random() * 25)
-    if (matrix[y][x] == 0) {
-        matrix[y][x] = 6
-        blackholeArr.push(new Blackhole(x, y));
-    }
-}
+// function BlackholeB() {
+//     let x = Math.floor(Math.random() * 25)
+//     let y = Math.floor(Math.random() * 25)
+//     if (matrix[y][x] == 0) {
+//         matrix[y][x] = 6
+//         blackholeArr.push(new Blackhole(x, y));
+//     }
+// }
 
 
 
@@ -224,8 +224,8 @@ io.on('connection', function (socket) {
     socket.on("Random", RandomB);
     socket.on("Stop", StopB);
     socket.on("Persona", PersonaB);
-    socket.on("Rock", RockB);
-    socket.on("Blackhole", BlackholeB);
+    // socket.on("Rock", RockB);
+    // socket.on("Blackhole", BlackholeB);
 
 
 });

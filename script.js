@@ -17,7 +17,7 @@ function winterB() {
 
 function setup() {
   frameRate(25);
-  createCanvas(20 * side,20 * side);
+  createCanvas(20 * side + 1,20 * side + 1);
   background('#acacac');
 }
 
