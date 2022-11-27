@@ -29,16 +29,16 @@ function draww(matrix) {
         fill("#acacac");
       } else if (matrix[y][x] == 1) { //grass
         fill("green");
-        if (weather == springB()) {
+        if (springB()) {
           fill("green")
         }
-        else if (weather == summerB()) {
+        else if (summerB()) {
           fill("green");
         }
-        else if (weather == autumnB()) {
+        else if (autumnB()) {
           fill("orange")
         }
-        else if (weather == winterB()) {
+        else if (winterB()) {
           fill("white")
         }
         rect(x * side, y * side, side, side);

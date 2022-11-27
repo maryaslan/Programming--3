@@ -1,19 +1,19 @@
 var LivingCreature = require("./living")
 module.exports = class Grass extends LivingCreature {
-    random(d){
-        let found = this.chooseCell(d);
-        let result = Math.floor(Math.random()*found.length)
-        return found[result];
+    random(emptyCells){
+     return emptyCells[Math.floor(Math.random()*emptyCells.length)]
     }
 
     mul() {
-        this.multiply++;
+     //   this.multiply++;
         var emptyCells = this.chooseCell(0);
-        var newCell = this.random(emptyCells);
+        var newCell = this.random(emptyCells); // [[],[],[],[],[],...] //emptyCells.length
 
         // console.log(emptyCells, newCell);
-        if (newCell && this.multiply >= 4) {
-
+       // && this.multiply >= 4
+    //   console.log(newCell)
+        if (newCell ) {
+console.log("inside grass mull")
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[newY][newX] = 1;

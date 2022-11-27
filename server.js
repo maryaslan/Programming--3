@@ -78,13 +78,12 @@ io.sockets.emit('send matrix', matrix);
 
 
 
-
-var Grass = require("./grass")
-var GrassEater = require("./grassEater");
-var Persona = require("./persona");
-var Predator = require("./predator");
-var Blackhole = require("./blackhole");
-var Rock = require("./rock");
+ Grass = require("./grass")
+ GrassEater = require("./grassEater");
+ Persona = require("./persona");
+ Predator = require("./predator");
+ Blackhole = require("./blackhole");
+ Rock = require("./rock");
 
 
 function createObject() {
@@ -116,6 +115,7 @@ function createObject() {
 
 function game() {
     for (let i in grassArr) {
+        console.log("grassArr", grassArr)
         grassArr[i].mul()
         grassArr[i].eat()
     }

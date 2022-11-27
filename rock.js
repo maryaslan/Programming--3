@@ -16,11 +16,9 @@ module.exports = class Rock extends LivingCreature {
 
     }
 
-    random(){
-        let found = this.chooseCell(0);
-        let result = Math.floor(Math.random()*found.length)
-        return found[result];
-    }
+    random(emptyCells){
+        return emptyCells[Math.floor(Math.random()*emptyCells.length)]
+       }
 
     mul() {
         this.multiply++;

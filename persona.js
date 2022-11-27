@@ -21,11 +21,9 @@ module.exports = class Persona extends LivingCreature {
         this.getNewCoordinates()
         return super.chooseCell(character);
     }
-    random(){
-        let found = this.chooseCell(0);
-        let result = Math.floor(Math.random()*found.length)
-        return found[result];
-    }
+    random(emptyCells){
+        return emptyCells[Math.floor(Math.random()*emptyCells.length)]
+       }
     mul() {
         var emptyCells = this.chooseCell(0);
         var newCell = this.random(emptyCells);
