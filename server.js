@@ -13,6 +13,8 @@ server.listen(3000, () => {
     console.log('Listening on localhost:3000');
 });
 
+
+
 grassArr = [];
 grassEaterArr = [];
 predatorArr = [];
@@ -186,33 +188,106 @@ function PersonaB() {
     }
 }
 
-// function RockB() {
-//     let x = Math.floor(Math.random() * 25)
-//     let y = Math.floor(Math.random() * 25)
-//     if (matrix[y][x] == 0) {
-//         matrix[y][x] = 5
-//         rockArr.push(new Rock(x, y));
-//     }
-// }
+function RockB() {
+    let x = Math.floor(Math.random() * 25)
+    let y = Math.floor(Math.random() * 25)
+    if (matrix[y][x] == 0) {
+        matrix[y][x] = 5
+        rockArr.push(new Rock(x, y));
+    }
+}
 
-// function BlackholeB() {
-//     let x = Math.floor(Math.random() * 25)
-//     let y = Math.floor(Math.random() * 25)
-//     if (matrix[y][x] == 0) {
-//         matrix[y][x] = 6
-//         blackholeArr.push(new Blackhole(x, y));
-//     }
-// }
+function BlackholeB() {
+    let x = Math.floor(Math.random() * 25)
+    let y = Math.floor(Math.random() * 25)
+    if (matrix[y][x] == 0) {
+        matrix[y][x] = 6
+        blackholeArr.push(new Blackhole(x, y));
+    }
+}
 
 
 
 function RandomB() {
-    generateMatrix(30, 45, 25, 15, 20, 6, 6, )
+    function generateMatrix(len, gr, grEat, predator, persona, rock, blackhole) {
+   
+        for (let i = 0; i < len; i++) {
+            matrix[i] = []
+            for (let j = 0; j < len; j++) {
+                matrix[i][j] = 0
+            }
+        }
+        for (let i = 0; i < gr; i++) {
+            let x = Math.floor(Math.random() * len);
+            let y = Math.floor(Math.random() * len);
+            if (matrix[y][x] == 0) {
+                matrix[x][y] = 1;
+            }
+        }
+        for (let i = 0; i < grEat; i++) {
+            let x = Math.floor(Math.random() * len);
+            let y = Math.floor(Math.random() * len);
+            if (matrix[y][x] == 0) {
+                matrix[x][y] = 2;
+            }
+        }
+        for (let i = 0; i < predator; i++) {
+            let x = Math.floor(Math.random() * len);
+            let y = Math.floor(Math.random() * len);
+            if (matrix[y][x] == 0) {
+                matrix[x][y] = 3;
+            }
+        }
+        for (let i = 0; i < persona; i++) {
+            let x = Math.floor(Math.random() * len);
+            let y = Math.floor(Math.random() * len);
+            if (matrix[y][x] == 0) {
+                matrix[x][y] = 4;
+            }
+        }
+        for (let i = 0; i < rock; i++) {
+            let x = Math.floor(Math.random() * len);
+            let y = Math.floor(Math.random() * len);
+            if (matrix[y][x] == 0) {
+                matrix[x][y] = 5;
+            }
+        }
+        for (let i = 0; i < blackhole; i++) {
+            let x = Math.floor(Math.random() * len);
+            let y = Math.floor(Math.random() * len);
+            if (matrix[y][x] == 0) {
+                matrix[x][y] = 6;
+            }
+        }
+        return matrix;
+    }
+    generateMatrix(30, 45, 25, 15, 20, 6, 6)
 }
 
 function StopB() {
 
 }
+// function springB() {
+//     if(matrix[y][x] == 1){
+//     fill("green")
+//     }
+//   }
+//   function springB() {
+//     if(matrix[y][x] == 1){
+//     fill("green")
+//     }
+//   }
+//   function springB() {
+//     if(matrix[y][x] == 1){
+//     fill("orange")
+//     }
+//   }
+//   function springB() {
+//     if(matrix[y][x] == 1){
+//     fill("white")
+//     }
+//   }
+  
 io.sockets.emit("send matrix", matrix);
 
 io.on('connection', function (socket) {
@@ -224,8 +299,11 @@ io.on('connection', function (socket) {
     socket.on("Random", RandomB);
     socket.on("Stop", StopB);
     socket.on("Persona", PersonaB);
-    // socket.on("Rock", RockB);
-    // socket.on("Blackhole", BlackholeB);
-
+    socket.on("Blackhole", BlackholeB);
+    socket.on("Rock", RockB);
+    // socket.on("Spring", springB);
+    // socket.on("Summer", summerB);
+    // socket.on("Autumn", autumnB);
+    // socket.on("Winter", winterB);
 
 });

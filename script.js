@@ -1,18 +1,35 @@
 var side = 30;
 var socket = io();
-var weather = 'winter';
+var weather = "winter";
+var btn = document.getElementById('btn');
+var btn1 = document.getElementById('btn1');
+var btn2 = document.getElementById('btn2');
+var btn3 = document.getElementById('btn3');
 
+
+// function springB() {
+//   weather = "spring";
+// }
+// function summerB() {
+//   weather = "summer";
+// }
+// function autumnB() {
+//   weather = "autumn";
+// }
+// function winterB() {
+//   weather = "winter";
+// }
 function springB() {
-  weather = 'spring';
+  fill("green")
 }
 function summerB() {
-  weather = 'summer';
+  fill("green");
 }
 function autumnB() {
-  weather = 'autumn';
+  fill("orange")
 }
-function winterB() {
-  weather = 'winter';
+function winterB(){
+  fill("white")
 }
 
 function setup() {
@@ -29,18 +46,6 @@ function draww(matrix) {
         fill("#acacac");
       } else if (matrix[y][x] == 1) { //grass
         fill("green");
-        if (springB()) {
-          fill("green")
-        }
-        else if (summerB()) {
-          fill("green");
-        }
-        else if (autumnB()) {
-          fill("orange")
-        }
-        else if (winterB()) {
-          fill("white")
-        }
         rect(x * side, y * side, side, side);
       } else if (matrix[y][x] == 2) { //grasseater
         fill("yellow");
@@ -59,10 +64,33 @@ function draww(matrix) {
 
     }
   }
-
   
 }
 
+btn.addEventListener('click', function onClick(event) {
+  document.body.style.backgroundColor = '#ADFF2F';
+  if(matrix[y][x] == 1){
+    fill("green");
+  }
+});
+btn1.addEventListener('click', function onClick(event) {
+  document.body.style.backgroundColor = '#7FFFD4';
+  if(matrix[y][x] == 1){
+    fill("green");
+  }
+});
+btn2.addEventListener('click', function onClick(event) {
+  document.body.style.backgroundColor = '#FF8C00';
+  if(matrix[y][x] == 1){
+    fill("orange");
+  }
+});
+btn3.addEventListener('click', function onClick(event) {
+  document.body.style.backgroundColor = '#87CEEB';
+  if(matrix[y][x] == 1){
+    fill("white");
+  }
+});
 function ClearB() {
   socket.emit("Clear")
 }
@@ -78,22 +106,17 @@ function GrassB() {
 function PersonaB() {
   socket.emit("Persona")
 }
+function BlackholeB() {
+  socket.emit("Blackhole")
+}
+function RockB() {
+  socket.emit("Rock")
+}
 function StopB() {
   socket.emit("Stop")
 }
 function RandomB() {
   socket.emit("Random")
 }
-function SpringB() {
-  socket.emit("Spring")
-}
-function SummerB() {
-  socket.emit("Summer")
-}
-function AutumnB() {
-  socket.emit("Autumn")
-}
-function WinterB() {
-  socket.emit("Winter")
-}
+
 socket.on('send matrix', draww);
