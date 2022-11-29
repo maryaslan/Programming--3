@@ -16,9 +16,9 @@ module.exports = class Rock extends LivingCreature {
 
     }
 
-    random(emptyCells){
-        return emptyCells[Math.floor(Math.random()*emptyCells.length)]
-       }
+    random(emptyCells) {
+        return emptyCells[Math.floor(Math.random() * emptyCells.length)]
+    }
 
     mul() {
         this.multiply++;
@@ -26,7 +26,7 @@ module.exports = class Rock extends LivingCreature {
         var newCell = this.random(emptyCells);
 
         console.log(emptyCells, newCell);
-        if (newCell && this.multiply >= 1000) { 
+        if (newCell && this.multiply >= 1000) {
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[newY][newX] = 5;

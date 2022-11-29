@@ -5,13 +5,9 @@ module.exports = class Grass extends LivingCreature {
     }
 
     mul() {
-        //   this.multiply++;
         var emptyCells = this.chooseCell(0);
-        var newCell = this.random(emptyCells); // [[],[],[],[],[],...] //emptyCells.length
+        var newCell = this.random(emptyCells);
 
-        // console.log(emptyCells, newCell);
-        // && this.multiply >= 4
-        //   console.log(newCell)
         if (newCell) {
             console.log("inside grass mull")
             var newX = newCell[0];

@@ -21,9 +21,10 @@ module.exports = class Predator extends LivingCreature {
         this.getNewCoordinates()
         return super.chooseCell(character);
     }
-    random(emptyCells){
-        return emptyCells[Math.floor(Math.random()*emptyCells.length)]
-       }
+
+    random(emptyCells) {
+        return emptyCells[Math.floor(Math.random() * emptyCells.length)]
+    }
 
     mul() {
         var emptyCells = this.chooseCell(0);

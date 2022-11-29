@@ -1,6 +1,5 @@
 var side = 30;
 var socket = io();
-var weath = 'winter'
 var btn = document.getElementById('btn'); //spring
 var btn1 = document.getElementById('btn1'); //summer
 var btn2 = document.getElementById('btn2'); //autumn
@@ -26,17 +25,17 @@ btn.addEventListener('click', function onClick() {
 function draww(matrix) {
   for (var y = 0; y < matrix.length; y++) {
     for (var x = 0; x < matrix[y].length; x++) {
-      if (matrix[y][x] == 1) {
-        btn.addEventListener('click', function onClick0() {
+      if (matrix[y][x] == 1) { //grass
+        btn.addEventListener('click', function onClick() {
             fill("green");
         });
-        btn1.addEventListener('click', function onClick1() {
+        btn1.addEventListener('click', function onClick() {
             fill("green");      
         });
-        btn2.addEventListener('click', function onClick2() { 
+        btn2.addEventListener('click', function onClick() { 
             fill("orange");        
         });
-        btn3.addEventListener('click', function onClick3() {      
+        btn3.addEventListener('click', function onClick() {      
             fill("winter");    
         });
         // rect(x * side, y * side, side, side);
@@ -62,30 +61,6 @@ function draww(matrix) {
   
 }
 
-// btn.addEventListener('click', function onClick(event) {
-//   document.body.style.backgroundColor = '#ADFF2F';
-//   if(matrix[y][x] == 1){
-//     fill("green");
-//   }
-// });
-// btn1.addEventListener('click', function onClick(event) {
-//   document.body.style.backgroundColor = '#7FFFD4';
-//   if(matrix[y][x] == 1){
-//     fill("green");
-//   }
-// });
-// btn2.addEventListener('click', function onClick(event) {
-//   document.body.style.backgroundColor = '#FF8C00';
-//   if(matrix[y][x] == 1){
-//     fill("orange");
-//   }
-// });
-// btn3.addEventListener('click', function onClick(event) {
-//   document.body.style.backgroundColor = '#87CEEB';
-//   if(matrix[y][x] == 1){
-//     fill("white");
-//   }
-// });
 function ClearB() {
   socket.emit("Clear")
 }
@@ -106,9 +81,6 @@ function BlackholeB() {
 }
 function RockB() {
   socket.emit("Rock")
-}
-function StopB() {
-  socket.emit("Stop")
 }
 function RandomB() {
   socket.emit("Random")

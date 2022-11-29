@@ -23,7 +23,7 @@ rockArr = [];
 blackholeArr = [];
 matrix = [];
 function generateMatrix(len, gr, grEat, predator, persona, rock, blackhole) {
-   
+
     for (let i = 0; i < len; i++) {
         matrix[i] = []
         for (let j = 0; j < len; j++) {
@@ -80,12 +80,12 @@ io.sockets.emit('send matrix', matrix);
 
 
 
- Grass = require("./grass")
- GrassEater = require("./grassEater");
- Persona = require("./persona");
- Predator = require("./predator");
- Blackhole = require("./blackhole");
- Rock = require("./rock");
+Grass = require("./grass")
+GrassEater = require("./grassEater");
+Persona = require("./persona");
+Predator = require("./predator");
+Blackhole = require("./blackhole");
+Rock = require("./rock");
 
 
 function createObject() {
@@ -109,7 +109,7 @@ function createObject() {
             } else if (matrix[y][x] == 6) {
                 let blackhole = new Blackhole(x, y);
                 blackholeArr.push(blackhole);
-            } 
+            }
         }
     }
     io.sockets.emit('send matrix', matrix)
@@ -130,7 +130,7 @@ function game() {
     for (let i in personaArr) {
         personaArr[i].eat()
     }
-    
+
     io.sockets.emit("send matrix", matrix);
 }
 setInterval(game, 500);
@@ -144,7 +144,7 @@ function ClearB() {
     personaArr = [];
     rockArr = [];
     blackholeArr = [];
-    
+
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
             matrix[y][x] = 0;
@@ -206,11 +206,9 @@ function BlackholeB() {
     }
 }
 
-
-
 function RandomB() {
     function generateMatrix(len, gr, grEat, predator, persona, rock, blackhole) {
-   
+
         for (let i = 0; i < len; i++) {
             matrix[i] = []
             for (let j = 0; j < len; j++) {
@@ -264,30 +262,6 @@ function RandomB() {
     generateMatrix(30, 45, 25, 15, 20, 6, 6)
 }
 
-function StopB() {
-
-}
-// function springB() {
-//     if(matrix[y][x] == 1){
-//     fill("green")
-//     }
-//   }
-//   function springB() {
-//     if(matrix[y][x] == 1){
-//     fill("green")
-//     }
-//   }
-//   function springB() {
-//     if(matrix[y][x] == 1){
-//     fill("orange")
-//     }
-//   }
-//   function springB() {
-//     if(matrix[y][x] == 1){
-//     fill("white")
-//     }
-//   }
-  
 io.sockets.emit("send matrix", matrix);
 
 io.on('connection', function (socket) {
@@ -295,15 +269,9 @@ io.on('connection', function (socket) {
     socket.on("Clear", ClearB);
     socket.on("GrassEater", GrassEaterB);
     socket.on("Grass", GrassB);
-    socket.on("Predator", PredatorB); 
+    socket.on("Predator", PredatorB);
     socket.on("Random", RandomB);
-    socket.on("Stop", StopB);
     socket.on("Persona", PersonaB);
     socket.on("Blackhole", BlackholeB);
     socket.on("Rock", RockB);
-    // socket.on("Spring", Click);
-    // socket.on("Summer", Click1);
-    // socket.on("Autumn", Click2);
-    // socket.on("Winter", Click3);
-
 });
