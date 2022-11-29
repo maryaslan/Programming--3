@@ -301,9 +301,9 @@ io.on('connection', function (socket) {
     socket.on("Persona", PersonaB);
     socket.on("Blackhole", BlackholeB);
     socket.on("Rock", RockB);
-    // socket.on("Spring", springB);
-    // socket.on("Summer", summerB);
-    // socket.on("Autumn", autumnB);
-    // socket.on("Winter", winterB);
+    // socket.on("Spring", Click);
+    // socket.on("Summer", Click1);
+    // socket.on("Autumn", Click2);
+    // socket.on("Winter", Click3);
 
 });
