@@ -2,7 +2,7 @@ var LivingCreature = require("./living")
 module.exports = class Persona extends LivingCreature {
     constructor(x, y) {
         super(x, y)
-        this.energy = 8;
+        this.energy = 30;
     }
     getNewCoordinates() {
         this.directions = [
@@ -60,8 +60,10 @@ module.exports = class Persona extends LivingCreature {
     eat() {
         var emptyCells = this.chooseCell(3);
         var newCell = this.random(emptyCells);
+
         var emptyCells1 = this.chooseCell(5);
         var newCell1 = this.random(emptyCells1);
+
         if (newCell1) {
             this.die();
         } else if (newCell) {

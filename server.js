@@ -13,7 +13,12 @@ server.listen(3000, () => {
     console.log('Listening on localhost:3000');
 });
 
-
+Grass = require("./grass")
+GrassEater = require("./grassEater");
+Persona = require("./persona");
+Predator = require("./predator");
+Blackhole = require("./blackhole");
+Rock = require("./rock");
 
 grassArr = [];
 grassEaterArr = [];
@@ -22,6 +27,7 @@ personaArr = [];
 rockArr = [];
 blackholeArr = [];
 matrix = [];
+
 function generateMatrix(len, gr, grEat, predator, persona, rock, blackhole) {
 
     for (let i = 0; i < len; i++) {
@@ -74,19 +80,16 @@ function generateMatrix(len, gr, grEat, predator, persona, rock, blackhole) {
     }
     return matrix;
 }
-generateMatrix(30, 45, 25, 15, 20, 6, 6)
+generateMatrix(30, 45, 25, 15, 20, 15, 15)
 
 io.sockets.emit('send matrix', matrix);
 
 
-
-Grass = require("./grass")
-GrassEater = require("./grassEater");
-Persona = require("./persona");
-Predator = require("./predator");
-Blackhole = require("./blackhole");
-Rock = require("./rock");
-
+// function Game() {
+//     generateMatrix(30, 45, 25, 15, 20, 6, 6)
+//     createObject();
+//     game();
+// }
 
 function createObject() {
     for (var y = 0; y < matrix.length; y++) {
@@ -116,8 +119,7 @@ function createObject() {
 }
 
 function game() {
-    for (let i in grassArr) {
-        console.log("grassArr", grassArr)
+    for (let i in grassArr) { 
         grassArr[i].mul()
         grassArr[i].eat()
     }
@@ -133,8 +135,14 @@ function game() {
 
     io.sockets.emit("send matrix", matrix);
 }
-setInterval(game, 500);
+setInterval(game, 600);
 
+function RandomB() {
+    // generateMatrix(30, 45, 25, 15, 20, 6, 6);
+    generateMatrix(30, 45, 25, 15, 20, 15, 15)
+    createObject();
+    game();
+}
 
 
 function ClearB() {
@@ -204,62 +212,6 @@ function BlackholeB() {
         matrix[y][x] = 6
         blackholeArr.push(new Blackhole(x, y));
     }
-}
-
-function RandomB() {
-    function generateMatrix(len, gr, grEat, predator, persona, rock, blackhole) {
-
-        for (let i = 0; i < len; i++) {
-            matrix[i] = []
-            for (let j = 0; j < len; j++) {
-                matrix[i][j] = 0
-            }
-        }
-        for (let i = 0; i < gr; i++) {
-            let x = Math.floor(Math.random() * len);
-            let y = Math.floor(Math.random() * len);
-            if (matrix[y][x] == 0) {
-                matrix[x][y] = 1;
-            }
-        }
-        for (let i = 0; i < grEat; i++) {
-            let x = Math.floor(Math.random() * len);
-            let y = Math.floor(Math.random() * len);
-            if (matrix[y][x] == 0) {
-                matrix[x][y] = 2;
-            }
-        }
-        for (let i = 0; i < predator; i++) {
-            let x = Math.floor(Math.random() * len);
-            let y = Math.floor(Math.random() * len);
-            if (matrix[y][x] == 0) {
-                matrix[x][y] = 3;
-            }
-        }
-        for (let i = 0; i < persona; i++) {
-            let x = Math.floor(Math.random() * len);
-            let y = Math.floor(Math.random() * len);
-            if (matrix[y][x] == 0) {
-                matrix[x][y] = 4;
-            }
-        }
-        for (let i = 0; i < rock; i++) {
-            let x = Math.floor(Math.random() * len);
-            let y = Math.floor(Math.random() * len);
-            if (matrix[y][x] == 0) {
-                matrix[x][y] = 5;
-            }
-        }
-        for (let i = 0; i < blackhole; i++) {
-            let x = Math.floor(Math.random() * len);
-            let y = Math.floor(Math.random() * len);
-            if (matrix[y][x] == 0) {
-                matrix[x][y] = 6;
-            }
-        }
-        return matrix;
-    }
-    generateMatrix(30, 45, 25, 15, 20, 6, 6)
 }
 
 io.sockets.emit("send matrix", matrix);
