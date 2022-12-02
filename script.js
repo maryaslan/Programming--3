@@ -63,7 +63,6 @@ function draww(matrix) {
 
     }
   }
-  // rect(x * side, y * side, side, side);
 }
 
 function ClearB() {

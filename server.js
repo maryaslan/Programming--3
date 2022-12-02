@@ -84,13 +84,6 @@ generateMatrix(30, 45, 25, 15, 20, 15, 15)
 
 io.sockets.emit('send matrix', matrix);
 
-
-// function Game() {
-//     generateMatrix(30, 45, 25, 15, 20, 6, 6)
-//     createObject();
-//     game();
-// }
-
 function createObject() {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
@@ -138,7 +131,6 @@ function game() {
 setInterval(game, 600);
 
 function RandomB() {
-    // generateMatrix(30, 45, 25, 15, 20, 6, 6);
     generateMatrix(30, 45, 25, 15, 20, 15, 15)
     createObject();
     game();

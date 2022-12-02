@@ -10,7 +10,6 @@ module.exports = class Grass extends LivingCreature {
 
 
         if (newCell) {
-            
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[newY][newX] = 1;
